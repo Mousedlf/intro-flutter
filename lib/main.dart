@@ -1,8 +1,16 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
+import 'firebase_options.dart';
+import 'auth_gate.dart';
 
-void main() {
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -17,7 +25,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueAccent),
       ),
-      home: DefaultTabController(
+      home: const AuthGate(),
+      /*home: DefaultTabController(
         length: 3,
         child: Scaffold(
           appBar: AppBar(
@@ -76,20 +85,16 @@ class MyApp extends StatelessWidget {
               ),
               // ONGLET LISTE  ----------------------------------------------------------------
               Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('lala')
-                    ],
-
-                  )
-
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [Text('lala')],
+                ),
               ),
             ],
           ),
         ),
-      ),
+      ),*/
     );
   }
 }
